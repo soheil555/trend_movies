@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { RootState } from "store";
 import Movie from "components/Movie";
 import { MOVIES } from "reducers/moviesReducer";
+import TVShow from "components/TVShow";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function Home() {
 
   return (
     <MoviesList>
-      <h1>Trend Movies</h1>
+      <h2>Trend Movies</h2>
 
       <Movies>
         {trendMovies!.map(({ title, id, release_date, poster_path }) => {
@@ -38,12 +39,32 @@ export default function Home() {
           );
         })}
       </Movies>
+
+      <h2>Trend TV Shows</h2>
+
+      <Movies>
+        {trendTVShows!.map(({ name, id, first_air_date, poster_path }) => {
+          return (
+            <TVShow
+              poster_path={poster_path}
+              name={name}
+              id={id}
+              key={id}
+              first_air_date={first_air_date}
+            />
+          );
+        })}
+      </Movies>
     </MoviesList>
   );
 }
 
 const MoviesList = styled(motion.div)`
   padding: 0rem 5rem;
+
+  h2 {
+    margin: 2rem 0;
+  }
 `;
 
 const Movies = styled(motion.div)`

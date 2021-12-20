@@ -5,9 +5,16 @@ type MOVIE = {
   id: number;
 };
 
+type TVSHOW = {
+  name: string;
+  poster_path: string;
+  first_air_date: string;
+  id: number;
+};
+
 export type MOVIES = {
   trendMovies?: MOVIE[];
-  trendTVShows?: any[];
+  trendTVShows?: TVSHOW[];
   trendPeople?: any[];
   searched?: any[];
 };

@@ -4,22 +4,27 @@ import { imageBaseUrl } from "api";
 
 type Props = {
   id: number;
-  title: string;
+  name: string;
   poster_path: string;
-  release_date: string;
+  first_air_date: string;
 };
 
-export default function Movie({ id, title, poster_path, release_date }: Props) {
+export default function TVShow({
+  id,
+  name,
+  poster_path,
+  first_air_date,
+}: Props) {
   return (
-    <StyledMovie>
-      <h3>{title}</h3>
-      <p>{release_date}</p>
-      <img src={`${imageBaseUrl}${poster_path}`} alt={title} />
-    </StyledMovie>
+    <StyledTVShow>
+      <h3>{name}</h3>
+      <p>{first_air_date}</p>
+      <img src={`${imageBaseUrl}${poster_path}`} alt={name} />
+    </StyledTVShow>
   );
 }
 
-const StyledMovie = styled(motion.div)`
+const StyledTVShow = styled(motion.div)`
   padding-top: 1rem;
   min-height: 30vh;
   text-align: center;
