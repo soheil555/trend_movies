@@ -1,5 +1,12 @@
-type MOVIES = {
-  trendMovies?: any[];
+type MOVIE = {
+  title: string;
+  poster_path: string;
+  release_date: string;
+  id: number;
+};
+
+export type MOVIES = {
+  trendMovies?: MOVIE[];
   trendTVShows?: any[];
   trendPeople?: any[];
   searched?: any[];
