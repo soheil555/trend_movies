@@ -1,3 +1,5 @@
+import { trendMoviesURL } from "./api";
+
 function App() {
   return <div className="App"></div>;
 }
