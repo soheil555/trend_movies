@@ -98,7 +98,6 @@ const ContentCard = styled(motion.div)`
   width: 70%;
   position: absolute;
   background: white;
-  overflow-y: scroll;
   padding: 3rem 10rem;
   left: 15%;
   border-radius: 1rem;

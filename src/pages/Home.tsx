@@ -6,8 +6,10 @@ import styled from "styled-components";
 import { RootState } from "store";
 import Movie from "components/Movie";
 import { MOVIES } from "reducers/moviesReducer";
+import { MOVIE } from "reducers/detailReducer";
 import MovieDetail from "components/MovieDetail";
 import { useLocation } from "react-router-dom";
+import { fetchDetails } from "actions/moviesAction";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,6 +24,17 @@ export default function Home() {
   const { trendMovies } = useSelector<RootState, MOVIES>((state) => {
     return state.movies;
   });
+
+  const { detail, isLoading } = useSelector<RootState, MOVIE>(
+    (state) => state.detailMovie
+  );
+
+  useEffect(() => {
+    if (Object.keys(detail).length === 0 && !isLoading && movieId) {
+      dispatch({ type: "LOADING_DETAIL" });
+      dispatch(fetchDetails(Number(movieId)));
+    }
+  }, []);
 
   return (
     <MoviesList>
