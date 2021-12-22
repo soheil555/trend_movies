@@ -21,13 +21,17 @@ export default function Movie({ id, title, poster_path, release_date }: Props) {
   };
 
   return (
-    <Link to={`/movies/${id}`}>
-      <StyledMovie onClick={loadMovieDetail}>
+    <StyledMovie layoutId={String(id)} onClick={loadMovieDetail}>
+      <Link to={`/movies/${id}`}>
         <h3>{title}</h3>
         <p>{release_date}</p>
-        <img src={getImageUrl(poster_path, 500)} alt={title} />
-      </StyledMovie>
-    </Link>
+        <motion.img
+          layoutId={`img ${poster_path}`}
+          src={getImageUrl(poster_path, 500)}
+          alt={title}
+        />
+      </Link>
+    </StyledMovie>
   );
 }
 

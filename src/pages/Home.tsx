@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadMovies } from "actions/moviesAction";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import styled from "styled-components";
 import { RootState } from "store";
 import Movie from "components/Movie";
@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <MoviesList>
-      {movieId && <MovieDetail />}
+      {movieId && <MovieDetail id={movieId} />}
 
       <h2>Trend Movies</h2>
 

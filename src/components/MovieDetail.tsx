@@ -7,7 +7,11 @@ import { getImageUrl } from "api";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MovieDetail() {
+type Props = {
+  id: string;
+};
+
+export default function MovieDetail({ id }: Props) {
   const navigate = useNavigate();
 
   const { detail, images, isLoading } = useSelector<RootState, MOVIE>(
@@ -25,7 +29,7 @@ export default function MovieDetail() {
   };
 
   return (
-    <ShadowCard className="shadow" onClick={exitHandler}>
+    <ShadowCard layoutId={id} className="shadow" onClick={exitHandler}>
       {!isLoading && (
         <ContentCard>
           <HeaderSection>
@@ -45,7 +49,8 @@ export default function MovieDetail() {
           </HeaderSection>
 
           <OverView>
-            <img
+            <motion.img
+              layoutId={`img ${detail.poster_path}`}
               src={getImageUrl(detail.poster_path!)}
               alt={detail.poster_path}
             />
