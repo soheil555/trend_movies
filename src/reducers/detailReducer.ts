@@ -8,6 +8,7 @@ type MovieGenre = {
 };
 
 type MovieDetail = {
+  poster_path?: string;
   title?: string;
   genres?: MovieGenre[];
   overview?: string;
@@ -15,12 +16,12 @@ type MovieDetail = {
   release_date?: string;
 };
 
-type Poster = {
+type Backdrop = {
   file_path: string;
 };
 
 type MovieImage = {
-  posters?: Poster[];
+  backdrops?: Backdrop[];
 };
 
 export type MOVIE = {

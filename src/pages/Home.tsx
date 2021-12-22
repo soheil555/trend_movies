@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { RootState } from "store";
 import Movie from "components/Movie";
 import { MOVIES } from "reducers/moviesReducer";
-import TVShow from "components/TVShow";
 import MovieDetail from "components/MovieDetail";
 import { useLocation } from "react-router-dom";
 
@@ -20,10 +19,7 @@ export default function Home() {
     dispatch(loadMovies());
   }, []);
 
-  const { trendMovies, trendTVShows, trendPeople } = useSelector<
-    RootState,
-    MOVIES
-  >((state) => {
+  const { trendMovies } = useSelector<RootState, MOVIES>((state) => {
     return state.movies;
   });
 
@@ -46,28 +42,12 @@ export default function Home() {
           );
         })}
       </Movies>
-
-      <h2>Trend TV Shows</h2>
-
-      <Movies>
-        {trendTVShows!.map(({ name, id, first_air_date, poster_path }) => {
-          return (
-            <TVShow
-              poster_path={poster_path}
-              name={name}
-              id={id}
-              key={id}
-              first_air_date={first_air_date}
-            />
-          );
-        })}
-      </Movies>
     </MoviesList>
   );
 }
 
 const MoviesList = styled(motion.div)`
-  padding: 0rem 5rem;
+  padding: 2rem 5rem;
 
   h2 {
     margin: 2rem 0;

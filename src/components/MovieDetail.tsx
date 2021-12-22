@@ -3,7 +3,7 @@ import { MOVIE } from "reducers/detailReducer";
 import { RootState } from "store";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { imageBaseUrl } from "api";
+import { getImageUrl } from "api";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -44,18 +44,28 @@ export default function MovieDetail() {
             </div>
           </HeaderSection>
 
-          <p>{detail.overview}</p>
-          <div>
-            {images.posters?.map((poster) => {
+          <OverView>
+            <img
+              src={getImageUrl(detail.poster_path!)}
+              alt={detail.poster_path}
+            />
+            <p>{detail.overview}</p>
+          </OverView>
+
+          <h3>Image gallery</h3>
+
+          <Gallery>
+            {images.backdrops?.map((backdrop) => {
               return (
-                <img
-                  src={`${imageBaseUrl}${poster.file_path}`}
-                  alt={poster.file_path}
-                  key={poster.file_path}
-                />
+                <div key={backdrop.file_path}>
+                  <img
+                    src={getImageUrl(backdrop.file_path, 780)}
+                    alt={backdrop.file_path}
+                  />
+                </div>
               );
             })}
-          </div>
+          </Gallery>
         </ContentCard>
       )}
     </ShadowCard>
@@ -103,4 +113,23 @@ const HeaderSection = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
+`;
+
+const OverView = styled(motion.div)`
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  p {
+    margin: 2rem 0;
+  }
+`;
+
+const Gallery = styled(motion.div)`
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
 `;

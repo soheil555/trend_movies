@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { imageBaseUrl } from "api";
+import { getImageUrl } from "api";
 import { useDispatch } from "react-redux";
 import { fetchDetails } from "actions/moviesAction";
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function Movie({ id, title, poster_path, release_date }: Props) {
       <StyledMovie onClick={loadMovieDetail}>
         <h3>{title}</h3>
         <p>{release_date}</p>
-        <img src={`${imageBaseUrl}${poster_path}`} alt={title} />
+        <img src={getImageUrl(poster_path, 500)} alt={title} />
       </StyledMovie>
     </Link>
   );
