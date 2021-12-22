@@ -14,6 +14,7 @@ type MovieDetail = {
   overview?: string;
   production_companies?: ProductionCompany[];
   release_date?: string;
+  vote_average?: number;
 };
 
 type Backdrop = {

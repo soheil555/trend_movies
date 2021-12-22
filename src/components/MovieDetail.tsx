@@ -6,12 +6,25 @@ import { motion } from "framer-motion";
 import { getImageUrl } from "api";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import yellowStar from "img/yellowstar.png";
+import whiteStar from "img/whitestar.png";
 
 type Props = {
   id: string;
 };
 
 export default function MovieDetail({ id }: Props) {
+  const stars: JSX.Element[] = [];
+  const getVoteStar = (vote: number) => {
+    vote = Math.floor(vote);
+
+    for (let i = 0; i < vote; i++) {
+      stars.push(<img src={yellowStar} key={i} />);
+    }
+
+    return stars;
+  };
+
   const navigate = useNavigate();
 
   const { detail, images, isLoading } = useSelector<RootState, MOVIE>(
@@ -33,10 +46,14 @@ export default function MovieDetail({ id }: Props) {
       {!isLoading && (
         <ContentCard>
           <HeaderSection>
-            <div>
+            <Info>
               <h3>{detail.title}</h3>
               <p>{detail.release_date}</p>
-            </div>
+
+              <Stars>
+                {detail.vote_average ? getVoteStar(detail.vote_average) : ""}
+              </Stars>
+            </Info>
 
             <div>
               <p>
@@ -168,4 +185,22 @@ const CompanyLogos = styled(motion.div)`
     height: 100%;
     object-fit: contain;
   }
+`;
+
+const Stars = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  width: 1.2rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const Info = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
