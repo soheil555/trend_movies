@@ -26,11 +26,13 @@ type MovieImage = {
 export type MOVIE = {
   detail: MovieDetail;
   images: MovieImage;
+  isLoading: boolean;
 };
 
 const initState: MOVIE = {
   detail: {},
   images: {},
+  isLoading: false,
 };
 
 interface Action {
@@ -45,7 +47,15 @@ const detailReducer = (state = initState, action: Action) => {
         ...state,
         detail: action.payload.detail,
         images: action.payload.images,
+        isLoading: false,
       };
+
+    case "LOADING_DETAIL":
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     default:
       return { ...state };
   }

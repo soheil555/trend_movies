@@ -16,6 +16,7 @@ export default function Movie({ id, title, poster_path, release_date }: Props) {
   const dispatch = useDispatch();
 
   const loadMovieDetail = () => {
+    dispatch({ type: "LOADING_DETAIL" });
     dispatch(fetchDetails(id));
   };
 
