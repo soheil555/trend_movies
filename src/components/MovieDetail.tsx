@@ -29,7 +29,7 @@ export default function MovieDetail({ id }: Props) {
   };
 
   return (
-    <ShadowCard layoutId={id} className="shadow" onClick={exitHandler}>
+    <ShadowCard className="shadow" onClick={exitHandler}>
       {!isLoading && (
         <ContentCard>
           <HeaderSection>
@@ -39,18 +39,31 @@ export default function MovieDetail({ id }: Props) {
             </div>
 
             <div>
-              <p>{detail.genres?.map((genre) => `${genre.name}, `)}</p>
               <p>
-                {detail.production_companies?.map(
-                  (company) => `${company.name}, `
+                {detail.genres?.map(
+                  (genre, i) =>
+                    `${genre.name}${
+                      i !== detail.genres?.length! - 1 ? "," : ""
+                    }  `
                 )}
               </p>
+              <CompanyLogos>
+                {detail.production_companies?.map((company) => {
+                  if (company.logo_path) {
+                    return (
+                      <div key={company.logo_path} className="logo">
+                        <img src={getImageUrl(company.logo_path, 300)} />
+                      </div>
+                    );
+                  }
+                })}
+              </CompanyLogos>
             </div>
           </HeaderSection>
 
           <OverView>
             <motion.img
-              layoutId={`img ${detail.poster_path}`}
+              // layoutId={`img ${detail.poster_path}`}
               src={getImageUrl(detail.poster_path!)}
               alt={detail.poster_path}
             />
@@ -116,6 +129,7 @@ const HeaderSection = styled(motion.div)`
   text-align: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 2rem;
 `;
 
@@ -136,4 +150,22 @@ const Gallery = styled(motion.div)`
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+`;
+
+const CompanyLogos = styled(motion.div)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30rem;
+
+  .logo {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
