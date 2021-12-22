@@ -7,9 +7,14 @@ import { RootState } from "store";
 import Movie from "components/Movie";
 import { MOVIES } from "reducers/moviesReducer";
 import TVShow from "components/TVShow";
+import MovieDetail from "components/MovieDetail";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useDispatch();
+
+  const location = useLocation();
+  const movieId = location.pathname.split("/")[2];
 
   useEffect(() => {
     dispatch(loadMovies());
@@ -24,6 +29,8 @@ export default function Home() {
 
   return (
     <MoviesList>
+      {movieId && <MovieDetail />}
+
       <h2>Trend Movies</h2>
 
       <Movies>

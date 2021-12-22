@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
     *{
         margin:0;
         padding:0;
@@ -12,8 +10,18 @@ const GlobalStyle = createGlobalStyle`
 
     html{
         &::-webkit-scrollbar{
-            width:5.5rem;
+            width:0.5rem;
         }
+
+        &::-webkit-scrollbar-track{
+            background: #EEF2FF;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            background: #CDDEFF;
+            border-radius: 0.5rem;
+        }
+
     }
 
     body{
@@ -40,6 +48,10 @@ const GlobalStyle = createGlobalStyle`
     a{
         text-decoration: none;
         color: #334756;
+    }
+
+    img{
+        display: block;
     }
 
 
