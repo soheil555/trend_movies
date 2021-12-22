@@ -25,7 +25,7 @@ export default function Nav() {
 
   return (
     <StyledNav>
-      <h2 onClick={handleClearSearch}>Netflix&Chill</h2>
+      <h2 onClick={handleClearSearch}>Trend</h2>
       <form onSubmit={handleSearch}>
         <input
           value={searchMovie}
