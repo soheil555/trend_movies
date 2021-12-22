@@ -13,3 +13,7 @@ export const movieDetailURL = (id: number) =>
   `${baseUrl}/movie/${id}?api_key=${API_KEY}`;
 export const movieImagesURL = (id: number) =>
   `${baseUrl}/movie/${id}/images?api_key=${API_KEY}`;
+
+export const getsearchMovieURL = (query: string) => {
+  return `${baseUrl}/search/movie?query=${query}&api_key=${API_KEY}`;
+};

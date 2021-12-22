@@ -5,6 +5,7 @@ import {
   trendPeopleURL,
   movieDetailURL,
   movieImagesURL,
+  getsearchMovieURL,
 } from "api";
 
 //Action Creator
@@ -32,6 +33,17 @@ export const fetchDetails = (id: number) => async (dispatch: any) => {
     payload: {
       detail: movieDetail.data,
       images: movieImages.data,
+    },
+  });
+};
+
+export const searchMovies = (query: string) => async (dispatch: any) => {
+  const searchedMovies = await axios.get(getsearchMovieURL(query));
+
+  dispatch({
+    type: "SEARCH_MOVIES",
+    payload: {
+      searched: searchedMovies.data.results,
     },
   });
 };

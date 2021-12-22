@@ -21,7 +21,7 @@ export default function Home() {
     dispatch(loadMovies());
   }, []);
 
-  const { trendMovies } = useSelector<RootState, MOVIES>((state) => {
+  const { trendMovies, searched } = useSelector<RootState, MOVIES>((state) => {
     return state.movies;
   });
 
@@ -39,6 +39,28 @@ export default function Home() {
   return (
     <MoviesList>
       {movieId && <MovieDetail id={movieId} />}
+
+      {searched?.length ? (
+        <>
+          <h2>Searched Movies</h2>
+
+          <Movies>
+            {searched!.map(({ title, id, release_date, poster_path }) => {
+              return (
+                <Movie
+                  poster_path={poster_path}
+                  title={title}
+                  id={id}
+                  key={id}
+                  release_date={release_date}
+                />
+              );
+            })}
+          </Movies>
+        </>
+      ) : (
+        ""
+      )}
 
       <h2>Trend Movies</h2>
 

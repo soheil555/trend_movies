@@ -7,7 +7,7 @@ type MOVIE = {
 
 export type MOVIES = {
   trendMovies?: MOVIE[];
-  searched?: any[];
+  searched?: MOVIE[];
 };
 
 const initState: MOVIES = {
@@ -26,6 +26,16 @@ const moviesReducer = (state = initState, action: Action) => {
       return {
         ...state,
         trendMovies: action.payload.trendMovies,
+      };
+    case "SEARCH_MOVIES":
+      return {
+        ...state,
+        searched: action.payload.searched,
+      };
+    case "CLEAR_SEARCH":
+      return {
+        ...state,
+        searched: [],
       };
     default:
       return { ...state };
