@@ -7,7 +7,6 @@ import { getImageUrl } from "api";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import yellowStar from "img/yellowstar.png";
-import whiteStar from "img/whitestar.png";
 
 type Props = {
   id: string;
