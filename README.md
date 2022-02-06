@@ -4,6 +4,10 @@ Basic React application using The Movie Database [API](https://www.themoviedb.or
 
 Based on developedbyed the-creative-react-course-ignite [project](https://github.com/developedbyed/the-creative-react-course-ignite)
 
+![images/screenshot.png](images/screenshot.png)
+
+
+
 
 
 ## Setup
